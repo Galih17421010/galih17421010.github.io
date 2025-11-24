@@ -61,13 +61,11 @@ window.addEventListener('scroll', () => {
 const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
 const icon = themeToggle.querySelector("i");
-const text = themeToggle.querySelector("span");
 
 // cek preferensi sebelumnya (localStorage)
 if (localStorage.getItem("theme") === "dark") {
   body.classList.add("dark-mode");
   icon.classList.replace("fa-moon", "fa-sun");
-  text.textContent = "Light";
 }
 
 themeToggle.addEventListener("click", () => {
@@ -75,11 +73,9 @@ themeToggle.addEventListener("click", () => {
 
   if (body.classList.contains("dark-mode")) {
     icon.classList.replace("fa-moon", "fa-sun");
-    text.textContent = "Light";
     localStorage.setItem("theme", "dark");
   } else {
     icon.classList.replace("fa-sun", "fa-moon");
-    text.textContent = "Dark";
     localStorage.setItem("theme", "light");
   }
 });
