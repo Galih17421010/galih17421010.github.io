@@ -25,7 +25,25 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
               <i class={project.data.icon}></i>
             </div>
             <div class="project-body">
-              <h3>{project.data.title}</h3>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <h3 style="margin: 0;">{project.data.title}</h3>
+                {
+                  project.data.status === 'in-progress' && (
+                    <span class="project-status status-in-progress">
+                      <i class="fa-solid fa-spinner" aria-hidden="true"></i>
+                      On Progress
+                    </span>
+                  )
+                }
+                {
+                  project.data.status === 'completed' && (
+                    <span class="project-status status-completed">
+                      <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                      Selesai
+                    </span>
+                  )
+                }
+              </div>
               <span class="project-date">{formatDate(project.data.pubDate)}</span>
               <p>{project.data.description}</p>
               <div class="tag-list">

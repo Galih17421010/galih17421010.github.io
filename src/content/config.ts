@@ -35,6 +35,7 @@ const projects = defineCollection({
     liveUrl: z.string().url().optional(),
     githubUrl: z.string().url().optional(),
     featured: z.boolean().default(false),
+    status: z.enum(['in-progress', 'completed', 'planned']).default('in-progress'),
     order: z.number().default(0),
     pubDate: z.coerce.date(),
   }),
