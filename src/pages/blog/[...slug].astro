@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { formatDate, formatDateLong } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={`${post.data.title} - Blog`}
+  description={post.data.description}
+>
+  <div class="container" style="padding-top: 56px;">
+    <article class="prose" style="margin: 0 auto;">
+      <p class="breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / {post.slug}</p>
+      <h1>{post.data.title}</h1>
+      <p style="color: var(--text-faint); font-size: 0.95rem; margin-top: 0;">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDateLong(post.data.pubDate)}</time>
+        {post.data.updatedDate && <> · Diperbarui {formatDate(post.data.updatedDate)}</>}
+      </p>
+      <div class="tag-list">
+        {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+      <hr style="margin: 24px 0;" />
+      <Content />
+    </article>
+
+    <nav style="max-width: 720px; margin: 48px auto 72px;">
+      <a href="/blog/" class="btn btn-outline">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        Kembali ke Blog
+      </a>
+    </nav>
+  </div>
+</BaseLayout>

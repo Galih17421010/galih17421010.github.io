@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { formatDate } from '../lib/format';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Projects - Galih Agus Saputra"
+  description="Kumpulan proyek yang pernah saya kerjakan."
+>
+  <div class="page-hero container">
+    <p class="breadcrumb"><a href="/">Home</a> / Projects</p>
+    <h1>Projects</h1>
+    <p>Kumpulan proyek yang pernah saya kerjakan. Detail proyek disimpan dalam file MDX sehingga mudah diperbarui.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <article class="project-card fade-in">
+            <div class="project-icon" aria-hidden="true">
+              <i class={project.data.icon}></i>
+            </div>
+            <div class="project-body">
+              <h3>{project.data.title}</h3>
+              <span class="project-date">{formatDate(project.data.pubDate)}</span>
+              <p>{project.data.description}</p>
+              <div class="tag-list">
+                {project.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+              <div class="project-links">
+                {
+                  project.data.liveUrl && (
+                    <a
+                      href={project.data.liveUrl}
+                      class="link-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                      Live Demo
+                    </a>
+                  )
+                }
+                {
+                  project.data.githubUrl && (
+                    <a
+                      href={project.data.githubUrl}
+                      class="link-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fa-brands fa-github" aria-hidden="true"></i>
+                      GitHub
+                    </a>
+                  )
+                }
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

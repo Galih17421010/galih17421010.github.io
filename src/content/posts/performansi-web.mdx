@@ -1,0 +1,36 @@
+---
+title: 'Tips Optimasi Performa Aplikasi Web'
+description: 'Kumpulan praktik terbaik untuk membuat aplikasi web yang cepat: dari bundle size hingga image optimization.'
+pubDate: 2025-07-22
+tags: ['Performance', 'Web', 'Tips']
+---
+
+# Tips Optimasi Performa Aplikasi Web
+
+Performa adalah pengalaman. Berikut beberapa praktik yang saya terapkan dalam setiap proyek.
+
+## 1. Kurangi Bundle Size
+
+Kode splitting dan tree shaking adalah dasar optimasi. Gunakan dynamic import untuk modul yang jarang digunakan.
+
+```js
+// lazy load komponen besar
+const Chart = await import('./Chart.js');
+```
+
+## 2. Optimasi Gambar
+
+- Gunakan format modern seperti **WebP/AVIF**
+- Terapkan `loading="lazy"` pada gambar di bawah fold
+- Ukuran gambar harus sesuai dengan ukuran render
+
+## 3. Manfaatkan Caching
+
+Set header `Cache-Control` yang tepat untuk aset statis, dan gunakan CDN untuk distribusi global.
+
+## 4. Ukur dengan Tool
+
+- **Lighthouse** — audit cepat dan menyeluruh
+- **WebPageTest** — analisis mendalam
+
+Ingat: optimasi terbaik adalah yang bisa diukur dampaknya.

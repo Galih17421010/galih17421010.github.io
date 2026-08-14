@@ -1,0 +1,21 @@
+---
+const socials = [
+  { href: 'https://github.com/Galih17421010', icon: 'fa-brands fa-github', label: 'GitHub' },
+  { href: 'https://linkedin.com/in/galih-agus-saputra', icon: 'fa-brands fa-linkedin-in', label: 'LinkedIn' },
+  { href: 'https://twitter.com/', icon: 'fa-brands fa-x-twitter', label: 'Twitter' },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-content">
+    <p>&copy; {year} Galih Agus Saputra. Dibangun dengan Astro & MDX.</p>
+    <div class="footer-social">
+      {socials.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+          <i class={s.icon} aria-hidden="true"></i>
+        </a>
+      ))}
+    </div>
+  </div>
+</footer>

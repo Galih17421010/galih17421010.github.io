@@ -1,0 +1,34 @@
+---
+const items = [
+  { href: '/', label: 'Home', icon: 'fa-solid fa-house' },
+  { href: '/about/', label: 'About', icon: 'fa-solid fa-user' },
+  { href: '/projects/', label: 'Projects', icon: 'fa-solid fa-briefcase' },
+  { href: '/blog/', label: 'Blog', icon: 'fa-solid fa-feather-pointed' },
+  { href: '/contact/', label: 'Contact', icon: 'fa-solid fa-envelope' },
+];
+---
+
+<nav class="mobile-nav" aria-label="Navigasi mobile">
+  <div class="mobile-nav-container">
+    {items.map((item) => (
+      <a href={item.href} class="mobile-nav-item">
+        <i class={item.icon} aria-hidden="true"></i>
+        <span>{item.label}</span>
+      </a>
+    ))}
+  </div>
+</nav>
+
+<script>
+  const setActiveMobile = () => {
+    const path = window.location.pathname;
+    document.querySelectorAll('.mobile-nav-item').forEach((link) => {
+      const href = link.getAttribute('href');
+      const isActive = path === href || (href === '/' ? path === '/' : path.startsWith(href));
+      link.classList.toggle('active', isActive);
+    });
+  };
+
+  setActiveMobile();
+  document.addEventListener('astro:page-load', setActiveMobile);
+</script>
