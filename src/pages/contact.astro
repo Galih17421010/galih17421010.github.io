@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const contacts = [
   {
-    href: 'mailto:galih.saputra@gmail.com',
+    href: 'mailto:agussaputragalih@gmail.com',
     icon: 'fa-solid fa-envelope',
     label: 'Email',
-    value: 'galih.saputra@gmail.com',
+    value: 'agussaputragalih@gmail.com',
   },
   {
     href: 'https://github.com/Galih17421010',
@@ -15,7 +15,7 @@ const contacts = [
     value: '@Galih17421010',
   },
   {
-    href: 'https://linkedin.com/in/galih-agus-saputra',
+    href: 'https://id.linkedin.com/in/galihagussaputra',
     icon: 'fa-brands fa-linkedin-in',
     label: 'LinkedIn',
     value: 'galih-agus-saputra',
@@ -95,6 +95,6 @@ const contacts = [
     const body = encodeURIComponent(
       `Halo Galih,\n\n${data.get('message')}\n\n- ${data.get('name')} (${data.get('email')})`
     );
-    window.location.href = `mailto:galih.saputra@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:agussaputragalih@gmail.com?subject=${subject}&body=${body}`;
   });
 </script>
