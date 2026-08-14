@@ -1,85 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { formatDate } from '../lib/format';
-
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Projects - Galih Agus Saputra"
-  description="Kumpulan proyek yang pernah saya kerjakan."
+  title="Projects - Under Development"
+  description="Halaman project sedang dalam pengembangan."
 >
-  <div class="page-hero container">
-    <p class="breadcrumb"><a href="/">Home</a> / Projects</p>
-    <h1>Projects</h1>
-    <p>Kumpulan proyek yang pernah saya kerjakan. Detail proyek disimpan dalam file MDX sehingga mudah diperbarui.</p>
-  </div>
-
   <section class="section">
     <div class="container">
-      <div class="projects-grid">
-        {projects.map((project) => (
-          <article class="project-card fade-in">
-            <div class="project-icon" aria-hidden="true">
-              <i class={project.data.icon}></i>
-            </div>
-            <div class="project-body">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-                <h3 style="margin: 0;">{project.data.title}</h3>
-                {
-                  project.data.status === 'in-progress' && (
-                    <span class="project-status status-in-progress">
-                      <i class="fa-solid fa-spinner" aria-hidden="true"></i>
-                      On Progress
-                    </span>
-                  )
-                }
-                {
-                  project.data.status === 'completed' && (
-                    <span class="project-status status-completed">
-                      <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                      Selesai
-                    </span>
-                  )
-                }
-              </div>
-              <span class="project-date">{formatDate(project.data.pubDate)}</span>
-              <p>{project.data.description}</p>
-              <div class="tag-list">
-                {project.data.tags.map((tag) => <span class="tag">{tag}</span>)}
-              </div>
-              <div class="project-links">
-                {
-                  project.data.liveUrl && (
-                    <a
-                      href={project.data.liveUrl}
-                      class="link-btn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                      Live Demo
-                    </a>
-                  )
-                }
-                {
-                  project.data.githubUrl && (
-                    <a
-                      href={project.data.githubUrl}
-                      class="link-btn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <i class="fa-brands fa-github" aria-hidden="true"></i>
-                      GitHub
-                    </a>
-                  )
-                }
-              </div>
-            </div>
-          </article>
-        ))}
+      <div class="under-dev" style="text-align: center; padding: 48px 0;">
+        <div class="under-dev-icon" style="font-size: 5rem; color: var(--accent); margin-bottom: 24px;">
+          <i class="fa-solid fa-helmet-safety" aria-hidden="true"></i>
+        </div>
+        <p class="section-eyebrow" style="margin-bottom: 8px;">Projects</p>
+        <h1 class="section-title" style="margin-bottom: 16px;">Halaman Under Development</h1>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 480px; margin: 0 auto 0;">
+          Halaman ini masih dalam proses pengembangan. Kumpulan proyek yang sedang saya kerjakan
+          akan ditampilkan di sini setelah selesai.
+        </p>
+        <div class="under-dev-stripes" aria-hidden="true"></div>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px;">
+          <a href="/" class="btn btn-primary">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Kembali ke Beranda
+          </a>
+          <a href="/contact/" class="btn btn-outline">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            Hubungi Saya
+          </a>
+        </div>
       </div>
     </div>
   </section>

@@ -997,6 +997,58 @@ a {
   border-radius: var(--radius);
 }
 
+/* ===== Under Development ===== */
+.under-dev-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 24px;
+  border-radius: var(--radius-full);
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dev-bounce 2s ease-in-out infinite;
+}
+
+@keyframes dev-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.under-dev-stripes {
+  height: 8px;
+  max-width: 240px;
+  margin: 32px auto 0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+}
+
+.under-dev-stripes::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--gradient);
+  border-radius: var(--radius-full);
+  animation: dev-stripes 1.8s ease-in-out infinite;
+}
+
+@keyframes dev-stripes {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .nav-links {
